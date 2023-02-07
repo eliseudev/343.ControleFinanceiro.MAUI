@@ -1,24 +1,28 @@
-﻿namespace _343.ERP.SIGA.Views;
+﻿using _343.ERP.SIGA.Repositories;
+
+namespace _343.ERP.SIGA.Views;
 
 public partial class TransactionList : ContentPage
 {
-    private TransactionAdd _transactionAdd;
-    private TransactionEdit _transactionEdit;
+    private ITransactionRepository _transactionRepository;
 
-	public TransactionList(TransactionAdd transactionAdd, TransactionEdit transactionEdit)
+	public TransactionList(ITransactionRepository transactionRepository)
 	{
-        _transactionAdd = transactionAdd;
-        _transactionEdit = transactionEdit;
+        _transactionRepository = transactionRepository;
 		InitializeComponent();
+
+        CollectionTransaction.ItemsSource = _transactionRepository.GetAll();
 	}
 
     private void AdicionarTransacao(object sender, EventArgs args)
     {
-        Navigation.PushModalAsync(_transactionAdd);
+        var transaction = Handler.MauiContext.Services.GetService<TransactionAdd>();
+        Navigation.PushModalAsync(transaction);
     }
 
     private void EditarTransacao(object sender, EventArgs args)
     {
-        Navigation.PushModalAsync(_transactionEdit);
+        var transaction = Handler.MauiContext.Services.GetService<TransactionEdit>();
+        Navigation.PushModalAsync(transaction);
     }
 }

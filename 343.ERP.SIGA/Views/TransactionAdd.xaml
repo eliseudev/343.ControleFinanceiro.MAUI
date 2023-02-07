@@ -22,7 +22,7 @@
             </Grid>
         </Border>
 
-        <Label x:Name="LabelError" IsVisible="false" TextColor="Red"/>
+        <Label x:Name="LabelError" Margin="30, 10" IsVisible="false" TextColor="Red"/>
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
             <RadioButton x:Name="RadioIncome" IsChecked="True" Content="Receita"/>
@@ -33,7 +33,7 @@
         <DatePicker x:Name="DatePikerDate" Margin="15, 0"/>
         <Entry x:Name="EnttyValue" Placeholder="Valor" Margin="15, 0"/>
 
-        <Button Clicked="Button_Clicked" Text="Salvar" Margin="15, 0" HorizontalOptions="Center"/>
+        <Button Clicked="Button_Save" Text="Salvar" Margin="15, 0" HorizontalOptions="Center"/>
 
     </VerticalStackLayout>
 </ContentPage>

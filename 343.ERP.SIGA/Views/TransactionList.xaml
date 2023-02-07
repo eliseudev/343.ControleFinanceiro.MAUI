@@ -4,25 +4,35 @@
              x:Class="_343.ERP.SIGA.Views.TransactionList"
              Title="Listagem"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/Colors.xaml"/>
+    </ContentPage.Resources>
+
     <VerticalStackLayout>
-        <Grid Padding="15" ColumnDefinitions="50, *, Auto">
-            <Label
-                Text="S"
-                HorizontalOptions="Center"
-                BackgroundColor="White"
-                FontSize="20"/>
+        <CollectionView x:Name="CollectionTransaction">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15" ColumnDefinitions="50, *, Auto">
+                        <Label
+                            Text="S"
+                            HorizontalOptions="Center"
+                            BackgroundColor="White"
+                            FontSize="20"/>
 
-            <VerticalStackLayout Grid.Column="1">
-                <Label Text="Salário"/>
-                <Label Text="10/01/2023" TextColor="#BABABA"/>
-            </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Nome}"/>
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA"/>
+                        </VerticalStackLayout>
 
-            <Label
-                Grid.Column="2"
-                Text="R$ 3.500,00"
-                VerticalOptions="Center"
-                TextColor="{StaticResource Tertiary}"/>
-        </Grid> 
+                        <Label
+                            Grid.Column="2"
+                            Text="{Binding Value, StringFormat='{0:C}'}"
+                            VerticalOptions="Center"
+                            TextColor="{StaticResource Tertiary}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <Border
             Margin="10"
             BackgroundColor="{StaticResource Black}"

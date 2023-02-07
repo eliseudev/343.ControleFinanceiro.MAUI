@@ -63,13 +63,17 @@ public partial class TransactionAdd : ContentPage
             valid = false;
         }
 
-        if (string.IsNullOrEmpty(EnttyValue.Text) && !double.TryParse(EnttyValue.Text, out result))
+        if (!string.IsNullOrEmpty(EnttyValue.Text) && !double.TryParse(EnttyValue.Text, out result))
         {
-            sb.AppendLine("O ampo 'Valor' é inválido");
+            sb.AppendLine("O campo 'Valor' é inválido");
             valid = false;
         }
 
-        if (valid == false) LabelError.Text = sb.ToString();
+        if (valid == false)
+        {
+            LabelError.IsVisible = true;
+            LabelError.Text = sb.ToString();
+        }
 
         return valid;
     }
