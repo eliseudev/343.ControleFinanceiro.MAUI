@@ -1,12 +1,16 @@
 ﻿using System.Text;
 using _343.ERP.SIGA.Models;
+using _343.ERP.SIGA.Repositories;
 
 namespace _343.ERP.SIGA.Views;
 
 public partial class TransactionAdd : ContentPage
 {
-	public TransactionAdd()
+    private ITransactionRepository _transactionRepository;
+
+	public TransactionAdd(ITransactionRepository transactionRepository)
 	{
+        _transactionRepository = transactionRepository;
 		InitializeComponent();
 	}
 
@@ -19,6 +23,17 @@ public partial class TransactionAdd : ContentPage
     {
         if (ValidarDados() == false) return;
 
+        SaveTransactionInDataBase();
+
+        Navigation.PopModalAsync();
+
+        var countRegister = _transactionRepository.GetAll().Count();
+
+        App.Current.MainPage.DisplayAlert("Messagem!", $"Existem {countRegister} registro(s) no banco", "OK");
+    }
+
+    private void SaveTransactionInDataBase()
+    {
         Transaction transaction = new Transaction
         {
             Nome = EntryName.Text,
@@ -27,7 +42,7 @@ public partial class TransactionAdd : ContentPage
             Value = double.Parse(EnttyValue.Text)
         };
 
-
+        _transactionRepository.Add(transaction);
     }
 
     private bool ValidarDados()
