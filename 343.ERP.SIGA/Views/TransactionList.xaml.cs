@@ -11,8 +11,22 @@ public partial class TransactionList : ContentPage
         _transactionRepository = transactionRepository;
 		InitializeComponent();
 
-        CollectionTransaction.ItemsSource = _transactionRepository.GetAll();
+        CollectionViewTransactions.ItemsSource = _transactionRepository.GetAll();
+        Reload();
 	}
+
+    private void Reload()
+    {
+        var items = _transactionRepository.GetAll();
+
+        double income = items.Where(a => a.Type == Models.TransactionType.Income).Sum(a => a.Value);
+        double expense = items.Where(a => a.Type == Models.TransactionType.Expenses).Sum(a => a.Value);
+        double balance = income - expense;
+
+        LabelIncome.Text = income.ToString("C");
+        LabelExpense.Text = expense.ToString("C");
+        LabelBalance.Text = balance.ToString("C");
+    }
 
     private void AdicionarTransacao(object sender, EventArgs args)
     {

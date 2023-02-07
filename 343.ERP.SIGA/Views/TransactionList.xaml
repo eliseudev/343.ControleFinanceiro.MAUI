@@ -9,62 +9,89 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <CollectionView x:Name="CollectionTransaction">
+        <CollectionView x:Name="CollectionViewTransactions">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="15" ColumnDefinitions="50, *, Auto">
                         <Label
-                            Text="S"
-                            HorizontalOptions="Center"
                             BackgroundColor="White"
-                            FontSize="20"/>
-
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="S"
+                            VerticalOptions="Center" />
                         <VerticalStackLayout Grid.Column="1">
-                            <Label Text="{Binding Nome}"/>
-                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA"/>
+                            <Label Text="{Binding Nome}" />
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA" />
                         </VerticalStackLayout>
-
                         <Label
                             Grid.Column="2"
                             Text="{Binding Value, StringFormat='{0:C}'}"
-                            VerticalOptions="Center"
-                            TextColor="{StaticResource Tertiary}"/>
+                            TextColor="{StaticResource Tertiary}"
+                            VerticalOptions="Center" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
         <Border
             Margin="10"
+            Padding="10,15"
             BackgroundColor="{StaticResource Black}"
-            StrokeThickness="0"
-            Padding="10, 15"
-            StrokeShape="RoundRectangle 30">
+            StrokeShape="RoundRectangle 30"
+            StrokeThickness="0">
+            <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
+                <Label
+                    Margin="10,0"
+                    FontSize="18"
+                    Text="Saldo"
+                    TextColor="#979797" />
+                <Label
+                    x:Name="LabelBalance"
+                    Grid.Row="1"
+                    Margin="10,0"
+                    FontSize="36"
+                    TextColor="White" />
+                <Button
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Padding="0"
+                    Clicked="AdicionarTransacao"
+                    CornerRadius="27"
+                    FontSize="{OnPlatform Default=48,
+                                          Android=36}"
+                    HeightRequest="54"
+                    HorizontalOptions="Center"
+                    Text="+"
+                    WidthRequest="54" />
 
-        <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
+                <Label
+                    Grid.Row="3"
+                    Margin="10,0"
+                    FontSize="8"
+                    Text="Receitas"
+                    TextColor="#979797" />
+                <Label
+                    x:Name="LabelIncome"
+                    Grid.Row="4"
+                    Margin="10,0"
+                    FontSize="12"
+                    TextColor="White" />
 
-            <Label Margin="10, 0" Text="Saldo" TextColor="#979797" FontSize="18"/>
-            <Label Margin="10, 0" Text="R$ 2.760,00" Grid.Row="1" TextColor="White" FontSize="36"/>
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    FontSize="8"
+                    Text="Despesas"
+                    TextColor="#979797" />
+                <Label
+                    x:Name="LabelExpense"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    FontSize="12"
+                    TextColor="White" />
+            </Grid>
+         </Border>
 
-            <Button
-                Clicked="AdicionarTransacao"
-                Text="+"
-                HorizontalOptions="Center"
-                Grid.Column="1"
-                Grid.RowSpan="2"
-                WidthRequest="54"
-                HeightRequest="54"
-                Padding="0"
-                CornerRadius="27"
-                FontSize="48"/>
-
-            <Label Margin="10, 0" Text="Receitas" Grid.Row="3" TextColor="#979797"/>
-            <Label Margin="10, 0"  Text="R$ 3.500,00" FontSize="12" Grid.Row="4" TextColor="White"/>
-
-            <Label Text="Despesas" Grid.Row="3" Grid.Column="1" TextColor="#979797"/>
-            <Label Text="R$ 200,00" FontSize="12" Grid.Row="4" Grid.Column="1" TextColor="White"/>
-        </Grid>
-        </Border>
-         
-         <Button Clicked="EditarTransacao" Text="Editar" HorizontalOptions="Center"/>
     </VerticalStackLayout>
+
 </ContentPage>
