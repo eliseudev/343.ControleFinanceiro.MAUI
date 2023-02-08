@@ -8,8 +8,8 @@
         <ResourceDictionary Source="/Resources/Styles/Colors.xaml"/>
     </ContentPage.Resources>
 
-    <VerticalStackLayout>
-        <CollectionView x:Name="CollectionViewTransactions">
+    <Grid RowDefinitions="*, 180">
+         <CollectionView x:Name="CollectionViewTransactions">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="15" ColumnDefinitions="50, *, Auto">
@@ -34,11 +34,13 @@
         </CollectionView>
 
         <Border
+            Grid.Row="1"
             Margin="10"
             Padding="10,15"
             BackgroundColor="{StaticResource Black}"
             StrokeShape="RoundRectangle 30"
-            StrokeThickness="0">
+            StrokeThickness="0"
+            >
             <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
                 <Label
                     Margin="10,0"
@@ -91,7 +93,6 @@
                     TextColor="White" />
             </Grid>
          </Border>
-
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

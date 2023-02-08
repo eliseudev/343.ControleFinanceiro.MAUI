@@ -25,12 +25,12 @@
         <Label x:Name="LabelError" Margin="30, 10" IsVisible="false" TextColor="Red"/>
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
-            <RadioButton x:Name="RadioIncome" IsChecked="True" Content="Receita"/>
-            <RadioButton x:Name="RadioExpense" HorizontalOptions="End" Grid.Column="1" Content="Despesa"/>
+            <RadioButton x:Name="RadioIncome" IsChecked="True" Content=" Receita"/>
+            <RadioButton x:Name="RadioExpense" HorizontalOptions="End" Grid.Column="1" Content=" Despesa"/>
         </Grid>
 
         <Entry x:Name="EntryName" Placeholder="Nome" Margin="15, 0"/>
-        <DatePicker x:Name="DatePikerDate" Margin="15, 0"/>
+        <DatePicker x:Name="DatePikerDate" Margin="{OnPlatform Default='15,0', MacCatalyst='15,15,15,0'}"/>
         <Entry x:Name="EnttyValue" Placeholder="Valor" Margin="15, 0"/>
 
         <Button Clicked="Button_Save" Text="Salvar" Margin="15, 0" HorizontalOptions="Center"/>

@@ -27,12 +27,12 @@
         </Border>
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
-            <RadioButton IsChecked="True" Content="Receita"/>
-            <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa"/>
+            <RadioButton IsChecked="True" Content=" Receita"/>
+            <RadioButton HorizontalOptions="End" Grid.Column="1" Content=" Despesa"/>
         </Grid>
 
         <Entry Placeholder="Nome" Margin="15, 0"/>
-        <DatePicker Margin="15, 0"/>
+        <DatePicker x:Name="DatePikerDate" Margin="{OnPlatform Default='15,0', MacCatalyst='15,15,15,0'}"/>
         <Entry Placeholder="Valor" Margin="15, 0"/>
 
         <Button Text="Salvar" Margin="15, 0" HorizontalOptions="Center"/>
