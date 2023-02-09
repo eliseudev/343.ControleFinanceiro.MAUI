@@ -29,10 +29,6 @@ public partial class TransactionAdd : ContentPage
         Navigation.PopModalAsync();
 
         WeakReferenceMessenger.Default.Send<string>(string.Empty);
-
-        //var countRegister = _transactionRepository.GetAll().Count();
-
-        //App.Current.MainPage.DisplayAlert("Messagem!", $"Existem {countRegister} registro(s) no banco", "OK");
     }
 
     private void SaveTransactionInDataBase()
