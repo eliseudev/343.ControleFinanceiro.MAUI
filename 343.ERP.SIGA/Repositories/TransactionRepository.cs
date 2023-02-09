@@ -35,7 +35,7 @@ namespace _343.ERP.SIGA.Repositories
         public void Update(Transaction transaction)
         {
             var up = _database.GetCollection<Transaction>(collectionName);
-            up.Update(transaction);
+            up.Update(transaction.Id, transaction);
         }
     }
 }

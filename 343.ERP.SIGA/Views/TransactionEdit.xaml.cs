@@ -11,8 +11,9 @@ public partial class TransactionEdit : ContentPage
 
     private Transaction _transaction;
 
-	public TransactionEdit()
+	public TransactionEdit(ITransactionRepository repository)
 	{
+        _repository = repository;
 		InitializeComponent();
 	}
 
