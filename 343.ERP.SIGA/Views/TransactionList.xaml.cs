@@ -9,7 +9,10 @@ public partial class TransactionList : ContentPage
 {
     private ITransactionRepository _transactionRepository;
 
-	public TransactionList(ITransactionRepository transactionRepository)
+    private Color _borderOriginalBackgroundColor;
+    private String _labelOriginalText;
+
+    public TransactionList(ITransactionRepository transactionRepository)
 	{
         _transactionRepository = transactionRepository;
 		InitializeComponent();
@@ -62,14 +65,44 @@ public partial class TransactionList : ContentPage
 
     private async void ExcluirTransacao(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
+        await AnimationBorder((Border)sender, true);
         bool result = await App.Current.MainPage.DisplayAlert("Excluir", "Tem certeza que deseja excluir?", "Sim","Não");
+        
 
         if (result)
         {
             Transaction transaction = (Transaction)e.Parameter;
             _transactionRepository.Delete(transaction);
+            ReloadGetAll();
         }
+        else
+        {
+            await AnimationBorder((Border)sender, false);
+        }
+    }
 
-        ReloadGetAll();
+    private async Task AnimationBorder(Border border, bool IsDeleteAnimation)
+    {
+        var label = (Label)border.Content;
+
+        if (IsDeleteAnimation)
+        {
+            _borderOriginalBackgroundColor = border.BackgroundColor;
+            _labelOriginalText = label.Text;
+
+            await border.RotateYTo(90, 500);
+            border.BackgroundColor = Colors.Red;
+            label.TextColor = Colors.White;
+            label.Text = "X";
+            await border.RotateYTo(180, 500);
+        }
+        else
+        {
+            await border.RotateYTo(90, 500);
+            border.BackgroundColor = _borderOriginalBackgroundColor;
+            label.TextColor = Colors.Black;
+            label.Text = _labelOriginalText;
+            await border.RotateYTo(0, 500);
+        }
     }
 }
