@@ -1,4 +1,7 @@
 ﻿using _343.ERP.SIGA.Repositories;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Maui.Controls;
+using _343.ERP.SIGA.Models;
 
 namespace _343.ERP.SIGA.Views;
 
@@ -11,11 +14,21 @@ public partial class TransactionList : ContentPage
         _transactionRepository = transactionRepository;
 		InitializeComponent();
 
-        CollectionViewTransactions.ItemsSource = _transactionRepository.GetAll();
-        Reload();
-	}
+        ReloadGetAll();
+        ReloadGrid();
+        WeakReferenceMessenger.Default.Register<string>(this, (e, msg) =>
+        {
+            ReloadGetAll();
+        });
 
-    private void Reload()
+    }
+
+    private void ReloadGetAll()
+    {
+        CollectionViewTransactions.ItemsSource = _transactionRepository.GetAll();
+    }
+
+    private void ReloadGrid()
     {
         var items = _transactionRepository.GetAll();
 
@@ -34,9 +47,17 @@ public partial class TransactionList : ContentPage
         Navigation.PushModalAsync(transaction);
     }
 
-    private void EditarTransacao(object sender, EventArgs args)
+    void EditarDespesa(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-        var transaction = Handler.MauiContext.Services.GetService<TransactionEdit>();
-        Navigation.PushModalAsync(transaction);
+        //Capturando gesto
+        var grid = (Grid)sender;
+        var gesture = (TapGestureRecognizer)grid.GestureRecognizers[0];
+        Transaction transaction = (Transaction)gesture.CommandParameter;
+
+        var transactionEdit = Handler.MauiContext.Services.GetService<TransactionEdit>();
+        //Enviando dados selecionado para view de edição
+        transactionEdit.DadosTransacao(transaction);
+        Navigation.PushModalAsync(transactionEdit);
     }
+
 }

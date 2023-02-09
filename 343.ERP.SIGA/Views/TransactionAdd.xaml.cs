@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using _343.ERP.SIGA.Models;
 using _343.ERP.SIGA.Repositories;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace _343.ERP.SIGA.Views;
 
@@ -27,9 +28,11 @@ public partial class TransactionAdd : ContentPage
 
         Navigation.PopModalAsync();
 
-        var countRegister = _transactionRepository.GetAll().Count();
+        WeakReferenceMessenger.Default.Send<string>(string.Empty);
 
-        App.Current.MainPage.DisplayAlert("Messagem!", $"Existem {countRegister} registro(s) no banco", "OK");
+        //var countRegister = _transactionRepository.GetAll().Count();
+
+        //App.Current.MainPage.DisplayAlert("Messagem!", $"Existem {countRegister} registro(s) no banco", "OK");
     }
 
     private void SaveTransactionInDataBase()

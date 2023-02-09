@@ -13,6 +13,14 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="15" ColumnDefinitions="50, *, Auto">
+                        <Grid.GestureRecognizers>
+                            <!--Capurar item a ser editado-->
+                            <TapGestureRecognizer
+                                CommandParameter="{Binding .}"
+                                Tapped="EditarDespesa">
+                            </TapGestureRecognizer>
+
+                        </Grid.GestureRecognizers>
                         <Label
                             BackgroundColor="White"
                             FontSize="20"
