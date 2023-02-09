@@ -49,7 +49,7 @@ public partial class TransactionList : ContentPage
 
     void EditarDespesa(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
-        //Capturando gesto
+        //Capturando dados do click
         var grid = (Grid)sender;
         var gesture = (TapGestureRecognizer)grid.GestureRecognizers[0];
         Transaction transaction = (Transaction)gesture.CommandParameter;
@@ -60,4 +60,16 @@ public partial class TransactionList : ContentPage
         Navigation.PushModalAsync(transactionEdit);
     }
 
+    private async void ExcluirTransacao(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    {
+        bool result = await App.Current.MainPage.DisplayAlert("Excluir", "Tem certeza que deseja excluir?", "Sim","Não");
+
+        if (result)
+        {
+            Transaction transaction = (Transaction)e.Parameter;
+            _transactionRepository.Delete(transaction);
+        }
+
+        ReloadGetAll();
+    }
 }
