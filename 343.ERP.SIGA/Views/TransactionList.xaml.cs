@@ -22,6 +22,7 @@ public partial class TransactionList : ContentPage
         WeakReferenceMessenger.Default.Register<string>(this, (e, msg) =>
         {
             ReloadGetAll();
+            ReloadGrid();
         });
 
     }
