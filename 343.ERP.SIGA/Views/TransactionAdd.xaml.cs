@@ -28,6 +28,9 @@ public partial class TransactionAdd : ContentPage
 
         Navigation.PopModalAsync();
 
+        EntryName.IsEnabled = false;
+        EnttyValue.IsEnabled = false;
+
         WeakReferenceMessenger.Default.Send<string>(string.Empty);
     }
 

@@ -75,6 +75,7 @@ public partial class TransactionList : ContentPage
             Transaction transaction = (Transaction)e.Parameter;
             _transactionRepository.Delete(transaction);
             ReloadGetAll();
+            ReloadGrid();
         }
         else
         {
