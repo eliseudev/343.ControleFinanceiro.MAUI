@@ -73,9 +73,6 @@
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Libraries\" />
 	  <None Remove="Libraries\Converters\" />
-	  <None Remove="Resources\AppIcon\" />
-	  <None Remove="Resources\AppIcon\appiconfg.svg" />
-	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\AppIcon\appiconfg_android.svg" />
 	</ItemGroup>
 	<ItemGroup>
@@ -99,11 +96,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\close.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
 	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
 	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
 	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiIcon Remove="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 </Project>
