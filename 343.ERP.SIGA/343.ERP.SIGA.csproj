@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>343.ERP.SIGA</ApplicationTitle>
+		<ApplicationTitle>343 - Controle Financeiro</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname._343.erp.siga</ApplicationId>
@@ -38,6 +38,9 @@
 	  <CodesignKey>Mac Developer</CodesignKey>
 	  <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
 	  <EnableCodeSigning>False</EnableCodeSigning>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -78,6 +81,7 @@
 	  <Folder Include="Views\" />
 	  <Folder Include="Libraries\" />
 	  <Folder Include="Libraries\Converters\" />
+	  <Folder Include="Resources\AppIcon\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\TransactionAdd.xaml">
@@ -93,5 +97,10 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\close.svg" />
 	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
+	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
+	</ItemGroup>
+	<ItemGroup>
 	</ItemGroup>
 </Project>
