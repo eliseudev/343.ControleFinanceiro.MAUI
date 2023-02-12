@@ -74,6 +74,8 @@
 	  <None Remove="Libraries\" />
 	  <None Remove="Libraries\Converters\" />
 	  <None Remove="Resources\AppIcon\appiconfg_android.svg" />
+	  <None Remove="Libraries\Utils\" />
+	  <None Remove="Libraries\Utils\FixBugs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -82,6 +84,8 @@
 	  <Folder Include="Libraries\" />
 	  <Folder Include="Libraries\Converters\" />
 	  <Folder Include="Resources\AppIcon\" />
+	  <Folder Include="Libraries\Utils\" />
+	  <Folder Include="Libraries\Utils\FixBugs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\TransactionAdd.xaml">

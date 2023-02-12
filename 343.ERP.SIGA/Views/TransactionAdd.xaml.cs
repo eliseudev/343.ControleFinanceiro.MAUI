@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using _343.ERP.SIGA.Libraries.Utils.FixBugs;
 using _343.ERP.SIGA.Models;
 using _343.ERP.SIGA.Repositories;
 using CommunityToolkit.Mvvm.Messaging;
@@ -17,6 +18,7 @@ public partial class TransactionAdd : ContentPage
 
     private void Voltar(object sender, TappedEventArgs e)
     {
+        KeyboardFixBugs.HideKeyboard();
         Navigation.PopModalAsync();
     }
 
@@ -26,10 +28,9 @@ public partial class TransactionAdd : ContentPage
 
         SaveTransactionInDataBase();
 
-        Navigation.PopModalAsync();
+        KeyboardFixBugs.HideKeyboard();
 
-        EntryName.IsEnabled = false;
-        EnttyValue.IsEnabled = false;
+        Navigation.PopModalAsync();
 
         WeakReferenceMessenger.Default.Send<string>(string.Empty);
     }
